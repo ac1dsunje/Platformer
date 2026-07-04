@@ -8,16 +8,22 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private GameObject _levelPrefab;
 
     private PlayerController _playerController;
+    private LevelController _levelController;
 
     private void Awake()
     {
-        Instantiate(_levelPrefab);
+        SpawnLevel();
         SpawnPlayer();
+    }
+
+    private void SpawnLevel()
+    {
+        _levelController = Instantiate(_levelPrefab).GetComponent<LevelController>();
     }
 
     private void SpawnPlayer()
     {
-        _playerController = Instantiate(_playerConfig.Prefab, _playerConfig.SpawnPosition, Quaternion.identity).GetComponent<PlayerController>();
-        _playerController.Initialize(_playerConfig);
+        _playerController = Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
+            .GetComponent<PlayerController>().Initialize(_playerConfig);
     }
 }

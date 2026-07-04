@@ -81,15 +81,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2229891254195283420, guid: b866c9ef9fe3ae84f81780eff3f440d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.06, y: 0.06}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!1 &6622491763902307458
 GameObject:
@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e178b1c590cbacb4c8cfbeba86fa12fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _sprite: {fileID: 7120206685145172480}
 --- !u!70 &5000656217197584575
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -200,6 +199,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.06087482}
-  m_Size: {x: 0.73673534, y: 0.87825036}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.9, y: 0.9}
   m_Direction: 0
