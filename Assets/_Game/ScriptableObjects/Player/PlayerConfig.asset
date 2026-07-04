@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
   <Prefab>k__BackingField: {fileID: 6622491763902307458, guid: 5d6d3dfd85fdfc6498b3323966724408, type: 3}
-  <Sprite>k__BackingField: {fileID: 1731697443031409149, guid: 567386607d45f004795b1586602aae4a, type: 3}
-  <SpawnPosition>k__BackingField: {x: 0, y: 1}
-  <MovementSpeed>k__BackingField: 4
+  <MovementConfig>k__BackingField: {fileID: 11400000, guid: d2109441373c2db4293dc3514ea285bb, type: 2}
+  <HealthConfig>k__BackingField: {fileID: 11400000, guid: 61fb8ed0a6b01494e8340254447636e7, type: 2}

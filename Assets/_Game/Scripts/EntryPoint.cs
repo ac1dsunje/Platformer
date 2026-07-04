@@ -7,7 +7,6 @@ public class EntryPoint : MonoBehaviour
     [Header("Level")]
     [SerializeField] private GameObject _levelPrefab;
 
-    private PlayerController _playerController;
     private LevelController _levelController;
 
     private void Awake()
@@ -23,7 +22,9 @@ public class EntryPoint : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        _playerController = Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
-            .GetComponent<PlayerController>().Initialize(_playerConfig);
+        PlayerModel model = new(_playerConfig.HealthConfig, _playerConfig.MovementConfig);
+        PlayerView view = Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
+            .GetComponent<PlayerView>().Initialize(model);
+
     }
 }
