@@ -1,1 +1,1 @@
-here will be some game
+simple platformer with good code architecture WIP
