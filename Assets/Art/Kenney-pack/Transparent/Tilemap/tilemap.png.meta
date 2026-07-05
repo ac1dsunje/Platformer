@@ -1936,10 +1936,10 @@ TextureImporter:
         serializedVersion: 2
         x: 45
         y: 45
-        width: 7
-        height: 3
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2093,7 +2093,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2198,12 +2198,12 @@ TextureImporter:
       name: tilemap_76
       rect:
         serializedVersion: 2
-        x: 46
+        x: 45
         y: 36
-        width: 6
-        height: 4
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2221,11 +2221,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 54
-        y: 37
+        y: 36
         width: 8
-        height: 5
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2330,12 +2330,12 @@ TextureImporter:
       name: tilemap_82
       rect:
         serializedVersion: 2
-        x: 109
+        x: 108
         y: 36
-        width: 6
-        height: 5
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3650,12 +3650,12 @@ TextureImporter:
       name: tilemap_142
       rect:
         serializedVersion: 2
-        x: 65
-        y: 38
-        width: 4
-        height: 4
+        x: 63
+        y: 36
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
