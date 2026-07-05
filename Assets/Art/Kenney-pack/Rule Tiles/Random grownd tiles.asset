@@ -12,20 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: Random grownd tiles
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.RuleTile
-  m_DefaultSprite: {fileID: 0}
+  m_DefaultSprite: {fileID: -2727194386381995188, guid: 2e6cfad10b0025d449c6e904c1abed6c, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: 0}
-    m_GameObject: {fileID: 7667772058479663977, guid: 7f3d277fc5e56464a8315c5119682e7b, type: 3}
+    - {fileID: -2727194386381995188, guid: 2e6cfad10b0025d449c6e904c1abed6c, type: 3}
+    - {fileID: -3105712750621908594, guid: f05e813da8cda0b44b58c0cc2f63619d, type: 3}
+    - {fileID: -4384351873960586960, guid: 5c5d23f654f6954459c34f68883f0a69, type: 3}
+    - {fileID: -2727194386381995188, guid: 2e6cfad10b0025d449c6e904c1abed6c, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
-    m_PerlinScale: 0.5
-    m_Output: 0
+    m_PerlinScale: 0.514
+    m_Output: 1
     m_ColliderType: 1
-    m_RandomTransform: 0
+    m_RandomTransform: 5
     m_Neighbors: 
     m_NeighborPositions:
     - {x: -1, y: 1, z: 0}
