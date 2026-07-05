@@ -3,13 +3,13 @@ using UnityEngine;
 public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private PlayerConfig _playerConfig;
-    [SerializeField] private InputHandler _input;
+    [SerializeField] private StandardMovementInput _input;
 
     [Header("Level")]
     [SerializeField] private GameObject _levelPrefab;
 
     private LevelController _levelController;
-    private PlayerPresenter _playerPresenter;
+    private PlayerController _player;
 
     private void Awake()
     {
@@ -24,17 +24,7 @@ public class EntryPoint : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        PlayerModel model = new(_playerConfig.HealthConfig, _playerConfig.MovementConfig);
-
-        _playerPresenter = new(model, _input);
-
-        PlayerView view = Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
-            .GetComponent<PlayerView>().Construct(_playerPresenter, model);
-
-    }
-
-    private void OnDisable()
-    {
-        _playerPresenter.Dispose();
+        _player = Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
+            .GetComponent<PlayerController>().Construct(_input, _playerConfig.HealthConfig, _playerConfig.MovementConfig);
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-public class InputHandler: MonoBehaviour
+public class StandardMovementInput: MonoBehaviour, IMovementInput
 {
     public event Action<float> OnHorizontalInput;
     public event Action OnJumpRequested;
 
-    
     private void Update()
     {
         OnHorizontalInput?.Invoke(Input.GetAxis("Horizontal"));
