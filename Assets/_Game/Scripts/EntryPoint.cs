@@ -19,17 +19,17 @@ public class EntryPoint : MonoBehaviour
 
     private LevelController _levelController;
     private PlayerController _player;
-
-    private GamePlayOverlayScreen _overlay;
-    private DeathScreen _deathScreen;
+    private GameStateManager _gameStateManager;
 
     private void Awake()
     {
         _levelController = SpawnLevel();
         _player = SpawnPlayer();
 
-        _overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
-        _deathScreen = Instantiate(_deathScreenPrefab, _canvas.transform, false).GetComponent<DeathScreen>();
+        GamePlayOverlayScreen overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
+        DeathScreen deathScreen = Instantiate(_deathScreenPrefab, _canvas.transform, false).GetComponent<DeathScreen>();
+
+        _gameStateManager = new(_player, overlay, deathScreen);
 
         _camera.Construct(_player.transform, _speedFollow);
     }
@@ -43,5 +43,10 @@ public class EntryPoint : MonoBehaviour
     {
         return Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
             .GetComponent<PlayerController>().Construct(_input, _playerConfig.HealthConfig, _playerConfig.MovementConfig);
+    }
+
+    private void OnDisable()
+    {
+        _gameStateManager.Dispose();
     }
 }

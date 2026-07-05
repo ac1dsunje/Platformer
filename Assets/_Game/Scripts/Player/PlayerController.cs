@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     private float _velocity;
     private bool _isOnGround;
+
+    public event Action OnDied;
 
     public PlayerController Construct(IMovementInput input, HealthConfig healthConfig, MovementConfig movementConfig)
     {
@@ -59,5 +62,13 @@ public class PlayerController : MonoBehaviour
     {
         _velocity = velocity * _moveSpeed;
         _rb.linearVelocity = new(_velocity, _rb.linearVelocity.y);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Border"))
+        {
+            OnDied?.Invoke();
+        }
     }
 }
