@@ -11,9 +11,11 @@ public class Bootstrap: MonoBehaviour
     [Scene]
     [SerializeField] private string _mainMenuScene;
 
+    [SerializeField] private CoroutineRunner _coroutineRunner;
+
     private void Awake()
     {
-        SceneLoader.SetScenes(_loadingScene, _gamePlayScene, _mainMenuScene);
+        SceneLoader.Construct(_loadingScene, _gamePlayScene, _mainMenuScene, _coroutineRunner);
 
         SceneLoader.SetMainMenuScene();
     }
