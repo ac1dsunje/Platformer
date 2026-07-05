@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GroundChecker: MonoBehaviour
 {
-    public bool IsOnGround { get; private set; }
+    public event Action<bool> OnGroundChanged;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,7 +24,7 @@ public class GroundChecker: MonoBehaviour
     {
         if (other.CompareTag("Ground"))
         {
-            IsOnGround = state;
+            OnGroundChanged?.Invoke(state);
         }
     }
 }
