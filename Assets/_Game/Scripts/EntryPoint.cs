@@ -5,6 +5,10 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private PlayerConfig _playerConfig;
     [SerializeField] private StandardMovementInput _input;
 
+    [Header("Camera")]
+    [SerializeField] private CameraController _camera;
+    [SerializeField] private float _speedFollow;
+
     [Header("Level")]
     [SerializeField] private GameObject _levelPrefab;
 
@@ -13,18 +17,20 @@ public class EntryPoint : MonoBehaviour
 
     private void Awake()
     {
-        SpawnLevel();
-        SpawnPlayer();
+        _levelController = SpawnLevel();
+        _player = SpawnPlayer();
+
+        _camera.Construct(_player.transform, _speedFollow);
     }
 
-    private void SpawnLevel()
+    private LevelController SpawnLevel()
     {
-        _levelController = Instantiate(_levelPrefab).GetComponent<LevelController>();
+        return Instantiate(_levelPrefab).GetComponent<LevelController>();
     }
 
-    private void SpawnPlayer()
+    private PlayerController SpawnPlayer()
     {
-        _player = Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
+        return Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
             .GetComponent<PlayerController>().Construct(_input, _playerConfig.HealthConfig, _playerConfig.MovementConfig);
     }
 }
