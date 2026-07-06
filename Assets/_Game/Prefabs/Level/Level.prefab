@@ -606,6 +606,8 @@ MonoBehaviour:
   _spawnPosition: {fileID: 1505149245268377743}
   _enterGate: {fileID: 5097267607274868745}
   _exitGate: {fileID: 0}
+  _light: {fileID: 1933852969998612963}
+  _timeSec: 0
 --- !u!1 &2421251090017256544
 GameObject:
   m_ObjectHideFlags: 0
