@@ -5,6 +5,7 @@ public class PauseScreen : ScreenManager
 {
     [SerializeField] private Button _resume;
     [SerializeField] private Button _exit;
+    [SerializeField] private Button _restart;
 
     private GameStateManager _gameStateManager;
 
@@ -13,6 +14,7 @@ public class PauseScreen : ScreenManager
         _gameStateManager = gsm;
         _resume.onClick.AddListener(ResumeGame);
         _exit.onClick.AddListener(ExitToMainMenu);
+        _restart.onClick.AddListener(Restart);
 
         return this;
     }
@@ -24,12 +26,18 @@ public class PauseScreen : ScreenManager
 
     private void ExitToMainMenu()
     {
-        SceneLoader.SetMainMenuScene();
+        _gameStateManager.GoToMainMenu();
+    }
+
+    private void Restart()
+    {
+        _gameStateManager.RestartGameOnButton();
     }
 
     private void OnDestroy()
     {
         _resume.onClick.RemoveListener(ResumeGame);
         _exit.onClick.RemoveListener(ExitToMainMenu);
+        _restart.onClick.RemoveListener(Restart);
     }
 }

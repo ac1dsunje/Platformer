@@ -8,7 +8,7 @@ public class GameStateManager : StateManager<GameState>, IDisposable
     public GameStateManager(PlayerController player, GeneralInputHandler input)
     {
         _input = input;
-        _input.OnRestartClicked += RestartGame;
+        _input.OnRestartClicked += RestartGameOnDeath;
         _input.OnPauseClicked += PauseGame;
 
         _player = player;
@@ -20,10 +20,24 @@ public class GameStateManager : StateManager<GameState>, IDisposable
         ChangeState<DeathState>();
     }
 
-    private void RestartGame()
+    private void RestartGameOnDeath()
     {
         if (IsInState<DeathState>())
-            SceneLoader.ReloadGamePlay();
+            RestartGame();
+    }
+
+    public void RestartGameOnButton()
+    {
+        RestartGame();
+    }
+
+    public void GoToMainMenu()
+    {
+        if (IsInState<PauseState>())
+        {
+            ExitCurrentState();
+            SceneLoader.SetMainMenuScene();
+        }
     }
 
     private void PauseGame()
@@ -37,10 +51,16 @@ public class GameStateManager : StateManager<GameState>, IDisposable
         ChangeState<ExploringState>();
     }
 
+    private void RestartGame()
+    {
+        ExitCurrentState();
+        SceneLoader.ReloadGamePlay();
+    }
+
     public void Dispose()
     {
         _player.OnDied -= HandlePlayerDied;
-        _input.OnRestartClicked -= RestartGame;
+        _input.OnRestartClicked -= RestartGameOnDeath;
         _input.OnPauseClicked -= PauseGame;
     }
 }

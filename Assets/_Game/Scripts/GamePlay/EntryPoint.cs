@@ -70,7 +70,7 @@ public class EntryPoint : MonoBehaviour
         return new(overlay, deathScreen, pauseScreen);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _gameStateManager?.Dispose();
     }

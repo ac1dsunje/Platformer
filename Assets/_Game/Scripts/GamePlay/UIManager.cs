@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-public class UIManager
+﻿public class UIManager
 {
     private readonly GamePlayOverlayScreen _overlay;
     private readonly DeathScreen _deathScreen;
@@ -23,6 +21,7 @@ public class UIManager
     public void SetDeathScreens()
     {
         _overlay.Hide();
+        _pauseScreen.Hide();
         _deathScreen.Show();
     }
 

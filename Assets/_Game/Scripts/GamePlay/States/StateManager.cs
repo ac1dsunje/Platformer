@@ -29,4 +29,9 @@ public abstract class StateManager<TState> where TState : State
     {
         return _state?.GetType() == typeof(T);
     }
+
+    protected void ExitCurrentState()
+    {
+        _state?.Exit();
+    }
 }
