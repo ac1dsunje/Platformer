@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroup))]
 public abstract class ScreenManager: MonoBehaviour
 {
     [SerializeField] private CanvasGroup _screen;
+
+    private void OnValidate()
+    {
+        _screen ??= GetComponent<CanvasGroup>();
+    }
 
     public virtual void Show()
     {

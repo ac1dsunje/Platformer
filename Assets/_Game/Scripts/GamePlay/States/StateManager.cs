@@ -25,7 +25,7 @@ public abstract class StateManager<TState> where TState : State
         }
     }
 
-    public bool IsInState<T>() where T : TState
+    protected bool IsInState<T>() where T : TState
     {
         return _state?.GetType() == typeof(T);
     }

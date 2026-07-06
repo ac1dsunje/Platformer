@@ -251,6 +251,7 @@ MonoBehaviour:
   _canvas: {fileID: 1006630344}
   _overlayScreenPrefab: {fileID: 5186461214127160700, guid: 478362ae227ff0d4d9064fb2d038844a, type: 3}
   _deathScreenPrefab: {fileID: 3919109595341518841, guid: 68ced372daf99af4aa805119814f953b, type: 3}
+  _pauseScreenPrefab: {fileID: 5186461214127160700, guid: 6c0c6cc53e73a7741b39b1655cd9dce6, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

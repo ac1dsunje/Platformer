@@ -19,6 +19,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     [SerializeField] private GameObject _overlayScreenPrefab;
     [SerializeField] private GameObject _deathScreenPrefab;
+    [SerializeField] private GameObject _pauseScreenPrefab;
 
     private LevelController _levelController;
     private PlayerController _player;
@@ -49,15 +50,24 @@ public class EntryPoint : MonoBehaviour
 
     private void RegisterStates()
     {
-        GamePlayOverlayScreen overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
-        DeathScreen deathScreen = Instantiate(_deathScreenPrefab, _canvas.transform, false).GetComponent<DeathScreen>();
-
-        UIManager ui = new(overlay, deathScreen);
+        var ui = CreaterUIManager();
 
         _gameStateManager.AddState(new ExploringState(ui));
         _gameStateManager.AddState(new DeathState(ui));
-
+        _gameStateManager.AddState(new PauseState(ui));
         _gameStateManager.ChangeState<ExploringState>();
+    }
+
+    private UIManager CreaterUIManager()
+    {
+        var overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
+
+        var deathScreen = Instantiate(_deathScreenPrefab, _canvas.transform, false).GetComponent<DeathScreen>();
+
+        var pauseScreen = Instantiate(_pauseScreenPrefab, _canvas.transform, false)
+            .GetComponent<PauseScreen>().Initialize(_gameStateManager);
+
+        return new(overlay, deathScreen, pauseScreen);
     }
 
     private void OnDisable()

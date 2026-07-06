@@ -9,6 +9,7 @@ public class GameStateManager : StateManager<GameState>, IDisposable
     {
         _input = input;
         _input.OnRestartClicked += RestartGame;
+        _input.OnPauseClicked += PauseGame;
 
         _player = player;
         _player.OnDied += HandlePlayerDied;
@@ -25,9 +26,21 @@ public class GameStateManager : StateManager<GameState>, IDisposable
             SceneLoader.ReloadGamePlay();
     }
 
+    private void PauseGame()
+    {
+        if (!IsInState<PauseState>())
+            ChangeState<PauseState>();
+    }
+
+    public void ResumeGame()
+    {
+        ChangeState<ExploringState>();
+    }
+
     public void Dispose()
     {
         _player.OnDied -= HandlePlayerDied;
         _input.OnRestartClicked -= RestartGame;
+        _input.OnPauseClicked -= PauseGame;
     }
 }
