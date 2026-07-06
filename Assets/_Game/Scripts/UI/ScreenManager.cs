@@ -3,11 +3,11 @@
 [RequireComponent(typeof(CanvasGroup))]
 public abstract class ScreenManager: MonoBehaviour
 {
-    [SerializeField] private CanvasGroup _screen;
+    private CanvasGroup _screen;
 
-    private void OnValidate()
+    private void Awake()
     {
-        _screen ??= GetComponent<CanvasGroup>();
+        _screen = GetComponent<CanvasGroup>();
     }
 
     public virtual void Show()

@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
 
     public event Action OnDied;
 
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
     public PlayerController Construct(IMovementInput input, HealthConfig healthConfig, MovementConfig movementConfig)
     {
         _input = input;
@@ -37,12 +42,7 @@ public class PlayerController : MonoBehaviour
         return this;
     }
 
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnDisable()
+    private void OnDestroy()
     {
         _groundCheck.OnGroundChanged -= SetGroundState;
 
