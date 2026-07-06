@@ -168,7 +168,6 @@ MonoBehaviour:
   _gamePlayScene: Assets/_Game/Scenes/GamePlay.unity
   _mainMenuScene: Assets/_Game/Scenes/MainMenu.unity
   _coroutineRunner: {fileID: 154497766}
-  _loadingScreen: {fileID: 0}
 --- !u!114 &154497766
 MonoBehaviour:
   m_ObjectHideFlags: 0
