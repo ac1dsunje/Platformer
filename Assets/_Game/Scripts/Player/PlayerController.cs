@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GroundChecker _groundCheck;
     private IMovementInput _input;
     private Rigidbody2D _rb;
 
@@ -37,24 +36,25 @@ public class PlayerController : MonoBehaviour
         _input.OnJumpRequested += Jump;
         _input.OnHorizontalInput += Move;
 
-        _groundCheck.OnGroundChanged += SetGroundState;
-
         return this;
     }
 
     private void OnDestroy()
     {
-        _groundCheck.OnGroundChanged -= SetGroundState;
 
         _input.OnJumpRequested -= Jump;
         _input.OnHorizontalInput -= Move;
     }
 
-    private void SetGroundState(bool state) => _isOnGround = state;
+    private bool GetIsOnGround()
+    {
+        _isOnGround = Physics2D.CapsuleCast(transform.position, new Vector2(.9f, .9f), CapsuleDirection2D.Vertical, 0, Vector2.down, 0.15f);
+        return _isOnGround;
+    }
 
     private void Jump()
     {
-        if (!_isOnGround) return;
+        if (!GetIsOnGround()) return;
         _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
     }
 
