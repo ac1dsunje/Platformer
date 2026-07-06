@@ -14,7 +14,7 @@ public class MovingPlatform : MonoBehaviour
         waiting
     }
 
-    private State _state = State.moving;
+    private State _state;
 
     private Rigidbody2D _rb;
 
@@ -41,13 +41,14 @@ public class MovingPlatform : MonoBehaviour
         float distance = Vector2.Distance(_startPoint, _endPoint);
         _speed = distance / _movementTime;
 
+        ChangeState(State.moving);
         SwitchTarget();
     }
 
     private IEnumerator Waiting()
     {
         yield return new WaitForSeconds(_waitingTime);
-        _state = State.moving;
+        ChangeState(State.moving);
         SwitchTarget();
     }
 
@@ -61,7 +62,7 @@ public class MovingPlatform : MonoBehaviour
         if (_rb.position == _target)
         {
             _waitingCoroutine = StartCoroutine(Waiting());
-            _state = State.waiting;
+            ChangeState(State.waiting);
         }
     }
 
@@ -83,5 +84,10 @@ public class MovingPlatform : MonoBehaviour
         {
             StopCoroutine(_waitingCoroutine);
         }
+    }
+
+    private void ChangeState(State state)
+    {
+        _state = state;
     }
 }
