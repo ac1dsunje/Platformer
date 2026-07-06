@@ -50,7 +50,7 @@ public class EntryPoint : MonoBehaviour
 
     private void RegisterStates()
     {
-        var ui = CreaterUIManager();
+        var ui = CreateUIManager();
 
         _gameStateManager.AddState(new ExploringState(ui));
         _gameStateManager.AddState(new DeathState(ui));
@@ -58,7 +58,7 @@ public class EntryPoint : MonoBehaviour
         _gameStateManager.ChangeState<ExploringState>();
     }
 
-    private UIManager CreaterUIManager()
+    private UIManager CreateUIManager()
     {
         var overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
         overlay.Initialize(_levelController, _player);

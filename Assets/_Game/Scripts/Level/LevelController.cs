@@ -9,7 +9,8 @@ public class LevelController : MonoBehaviour
     [SerializeField] private Light2D _light;
     public Transform GetSpawnPosition => _spawnPosition;
 
-    public int TimeSec { get; private set; }
+    private float _time;
+    public int TimeSec => (int)_time;
 
     private void Awake()
     {
@@ -19,6 +20,6 @@ public class LevelController : MonoBehaviour
 
     private void Update()
     {
-        TimeSec = (int)Time.time;
+        _time += Time.deltaTime;
     }
 }
