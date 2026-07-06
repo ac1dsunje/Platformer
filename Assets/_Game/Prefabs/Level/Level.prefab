@@ -603,6 +603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelController
   _spawnPosition: {fileID: 1505149245268377743}
+  _enterGate: {fileID: 5097267607274868745}
+  _exitGate: {fileID: 0}
 --- !u!1 &2421251090017256544
 GameObject:
   m_ObjectHideFlags: 0
@@ -160268,6 +160270,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2518943145367626615, guid: ec1e93aa9e598b541a1681a038faba45, type: 3}
   m_PrefabInstance: {fileID: 2015061081354467190}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5097267607274868745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6722693924145702783, guid: ec1e93aa9e598b541a1681a038faba45, type: 3}
+  m_PrefabInstance: {fileID: 2015061081354467190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f87f20686d4594eb55c45f34a87fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GateController
 --- !u!1001 &2824734839782492790
 PrefabInstance:
   m_ObjectHideFlags: 0
