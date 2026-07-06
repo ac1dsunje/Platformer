@@ -28,6 +28,11 @@ public static class SceneLoader
         _coroutineRunner.StartCoroutine(LoadScene(_mainMenuScene));
     }
 
+    public static void ReloadGamePlay()
+    {
+        SetGamePlayScene();
+    }
+
     private static IEnumerator LoadScene(string sceneName)
     {
         SceneManager.LoadSceneAsync(_loadingScene);

@@ -3,7 +3,10 @@ using UnityEngine;
 public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private PlayerConfig _playerConfig;
-    [SerializeField] private StandardMovementInput _input;
+
+    [Header("Input")]
+    [SerializeField] private GeneralInputHandler _input;
+    [SerializeField] private StandardMovementInput _movementInput;
 
     [Header("Camera")]
     [SerializeField] private CameraController _camera;
@@ -29,7 +32,7 @@ public class EntryPoint : MonoBehaviour
         GamePlayOverlayScreen overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
         DeathScreen deathScreen = Instantiate(_deathScreenPrefab, _canvas.transform, false).GetComponent<DeathScreen>();
 
-        _gameStateManager = new(_player, overlay, deathScreen);
+        _gameStateManager = new(_player, overlay, deathScreen, _input);
 
         _camera.Construct(_player.transform, _speedFollow);
     }
@@ -42,7 +45,7 @@ public class EntryPoint : MonoBehaviour
     private PlayerController SpawnPlayer()
     {
         return Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
-            .GetComponent<PlayerController>().Construct(_input, _playerConfig.HealthConfig, _playerConfig.MovementConfig);
+            .GetComponent<PlayerController>().Construct(_movementInput, _playerConfig.HealthConfig, _playerConfig.MovementConfig);
     }
 
     private void OnDisable()
