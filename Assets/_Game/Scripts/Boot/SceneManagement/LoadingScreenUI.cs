@@ -19,6 +19,6 @@ public class LoadingScreenUI: ScreenManager
 
     private void RotateLogo()
     {
-        _loadingLogo.transform.Rotate(Vector3.forward * Time.deltaTime * 100, Space.World);
+        _loadingLogo.transform.Rotate(Vector3.forward * Time.unscaledDeltaTime * 100, Space.World);
     }
 }

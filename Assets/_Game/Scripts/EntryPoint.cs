@@ -47,6 +47,6 @@ public class EntryPoint : MonoBehaviour
 
     private void OnDisable()
     {
-        _gameStateManager.Dispose();
+        _gameStateManager?.Dispose();
     }
 }
