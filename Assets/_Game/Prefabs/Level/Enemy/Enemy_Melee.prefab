@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 6609831052956870273}
   - component: {fileID: 5485322192967769098}
   - component: {fileID: 4738395627425604061}
+  - component: {fileID: 109694247588511256}
   m_Layer: 0
   m_Name: Enemy_Melee
   m_TagString: Enemy
@@ -189,3 +190,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &109694247588511256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8053083223446639547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124044068f2948a4dadb99899a65664c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
