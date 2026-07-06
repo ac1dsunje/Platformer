@@ -24,17 +24,14 @@ public class EntryPoint : MonoBehaviour
     private PlayerController _player;
     private GameStateManager _gameStateManager;
 
-    private ExploringState _exploringState = new();
-    private DeathState _deathState = new();
-
     private void Awake()
     {
         _levelController = SpawnLevel();
         _player = SpawnPlayer();
 
-        RegisterStates();
+        _gameStateManager = new(_player, _input);
 
-        _gameStateManager = new(_player, _input, _exploringState, _deathState);
+        RegisterStates();
 
         _camera.Construct(_player.transform, _speedFollow);
     }
@@ -57,8 +54,10 @@ public class EntryPoint : MonoBehaviour
 
         UIManager ui = new(overlay, deathScreen);
 
-        _exploringState.Setup(ui);
-        _deathState.Setup(ui);
+        _gameStateManager.AddState(new ExploringState(ui));
+        _gameStateManager.AddState(new DeathState(ui));
+
+        _gameStateManager.ChangeState<ExploringState>();
     }
 
     private void OnDisable()

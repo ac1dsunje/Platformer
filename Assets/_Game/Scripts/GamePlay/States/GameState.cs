@@ -4,7 +4,7 @@ public abstract class GameState: State
 {
     protected UIManager uiManager;
 
-    public void Setup(UIManager ui)
+    public GameState(UIManager ui)
     {
         uiManager = ui;
     }

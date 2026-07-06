@@ -1,44 +1,57 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class GameStateManager: IDisposable
 {
     private readonly PlayerController _player;
     private readonly GeneralInputHandler _input;
 
-    private readonly ExploringState _exploringState;
-    private readonly DeathState _deathState;
+    private Dictionary<Type, GameState> _states = new();
+
     private GameState _state;
 
-    public GameStateManager(PlayerController player, GeneralInputHandler input, ExploringState exploring, DeathState death)
+    public GameStateManager(PlayerController player, GeneralInputHandler input)
     {
         _input = input;
         _input.OnRestartClicked += RestartGame;
 
         _player = player;
         _player.OnDied += HandlePlayerDied;
+    }
 
-        _exploringState = exploring;
-        _deathState = death;
-
-        ChangeState(_exploringState);
+    public void AddState(GameState state)
+    {
+        _states.Add(state.GetType(), state);
     }
 
     private void HandlePlayerDied()
     {
-        ChangeState(_deathState);
+        ChangeState<DeathState>();
     }
 
-    private void ChangeState(GameState newState)
+    public void ChangeState<T>() where T: GameState
     {
-        _state?.Exit();
+        if (IsInState<T>()) return;
 
-        _state = newState;
-        _state.Enter();
+        var type = typeof(T);
+
+        if (_states.TryGetValue(type, out var state))
+        {
+            _state?.Exit();
+            _state = state;
+            _state.Enter();
+        }
+    }
+
+    private bool IsInState<T>() where T : GameState
+    {
+        return _state?.GetType() == typeof(T);
     }
 
     private void RestartGame()
     {
-        SceneLoader.ReloadGamePlay();
+        if(IsInState<DeathState>())
+            SceneLoader.ReloadGamePlay();
     }
 
     public void Dispose()
