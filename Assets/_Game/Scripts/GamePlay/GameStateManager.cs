@@ -3,13 +3,13 @@
 public class GameStateManager: IDisposable
 {
     private readonly PlayerController _player;
-
-    private readonly GamePlayOverlayScreen _overlay;
-    private readonly DeathScreen _deathScreen;
     private readonly GeneralInputHandler _input;
 
+    private readonly ExploringState _exploringState;
+    private readonly DeathState _deathState;
+    private GameState _state;
 
-    public GameStateManager(PlayerController player, GamePlayOverlayScreen overlay, DeathScreen deathScreen, GeneralInputHandler input)
+    public GameStateManager(PlayerController player, GeneralInputHandler input, ExploringState exploring, DeathState death)
     {
         _input = input;
         _input.OnRestartClicked += RestartGame;
@@ -17,19 +17,25 @@ public class GameStateManager: IDisposable
         _player = player;
         _player.OnDied += HandlePlayerDied;
 
-        _overlay = overlay;
-        _deathScreen = deathScreen;
+        _exploringState = exploring;
+        _deathState = death;
 
-        _overlay.Show();
-        _deathScreen.Hide();
+        ChangeState(_exploringState);
     }
 
     private void HandlePlayerDied()
     {
-        _overlay.Hide();
-        _deathScreen.Show();
+        ChangeState(_deathState);
     }
-    
+
+    private void ChangeState(GameState newState)
+    {
+        _state?.Exit();
+
+        _state = newState;
+        _state.Enter();
+    }
+
     private void RestartGame()
     {
         SceneLoader.ReloadGamePlay();
