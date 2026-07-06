@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class GameState: State
+public abstract class GameState
 {
     protected UIManager uiManager;
 
@@ -9,12 +9,12 @@ public abstract class GameState: State
         uiManager = ui;
     }
 
-    public override void Enter()
+    public virtual void Enter()
     {
         Debug.Log($"Entered {GetType().Name}");
     }
 
-    public override void Exit()
+    public virtual void Exit()
     {
         Debug.Log($"Exited {GetType().Name}");
     }
