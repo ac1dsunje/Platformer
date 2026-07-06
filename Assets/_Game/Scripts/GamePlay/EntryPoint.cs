@@ -61,7 +61,7 @@ public class EntryPoint : MonoBehaviour
     private UIManager CreaterUIManager()
     {
         var overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
-        overlay.Initialize(_levelController);
+        overlay.Initialize(_levelController, _player);
 
         var deathScreen = Instantiate(_deathScreenPrefab, _canvas.transform, false).GetComponent<DeathScreen>();
 

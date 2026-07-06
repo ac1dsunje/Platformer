@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3628238201014687213}
   - component: {fileID: 2084612498053771731}
   - component: {fileID: 2632269760393339522}
+  - component: {fileID: -2223329884827128724}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -75,3 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-2223329884827128724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502414877016134691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6125045c15f4d0439dc6cce172a3fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSlotUI
+  _acitve: {fileID: -5986572666860191776, guid: bfc5102e5ed564d469e67bfb206262e3, type: 3}
+  _inactive: {fileID: -4258323408435371826, guid: 0e019dca1d60518468010d0a11315d8a, type: 3}
+  _slot: {fileID: 2632269760393339522}

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private IMovementInput _input;
     private Rigidbody2D _rb;
 
-    private float _maxHealth;
+    public float MaxHealth { get; private set; }
     private float _health;
 
     private float _moveSpeed;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         _input = input;
 
-        _maxHealth = healthConfig.MaxHealth;
+        MaxHealth = healthConfig.MaxHealth;
         _health = healthConfig.MaxHealth;
 
         _moveSpeed = movementConfig.MovementSpeed;
