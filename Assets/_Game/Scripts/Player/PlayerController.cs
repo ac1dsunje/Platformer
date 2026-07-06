@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -7,32 +6,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CapsuleCollider2D _collider;
     private IMovementInput _input;
     private Rigidbody2D _rb;
+    private PlayerStats _stats;
 
-    public float MaxHealth { get; private set; }
-    private float _health;
+    private void Awake() => _rb = GetComponent<Rigidbody2D>();
 
-    private float _moveSpeed;
-    private float _jumpForce;
-
-    private float _velocity;
-    private bool _isOnGround;
-
-    public event Action OnDied;
-
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
-
-    public PlayerController Construct(IMovementInput input, HealthConfig healthConfig, MovementConfig movementConfig)
+    public PlayerController Construct(IMovementInput input, PlayerStats stats)
     {
         _input = input;
-
-        MaxHealth = healthConfig.MaxHealth;
-        _health = healthConfig.MaxHealth;
-
-        _moveSpeed = movementConfig.MovementSpeed;
-        _jumpForce = movementConfig.JumpForce;
+        _stats = stats;
 
         _input.OnJumpRequested += Jump;
         _input.OnHorizontalInput += Move;
@@ -42,34 +23,31 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
-
         _input.OnJumpRequested -= Jump;
         _input.OnHorizontalInput -= Move;
     }
 
     private bool GetIsOnGround()
     {
-        _isOnGround = Physics2D.CapsuleCast(transform.position, _collider.size, _collider.direction, 0, Vector2.down, 0.15f);
-        return _isOnGround;
+        return Physics2D.CapsuleCast(transform.position, _collider.size, _collider.direction, 0, Vector2.down, 0.15f);
     }
 
     private void Jump()
     {
         if (!GetIsOnGround()) return;
-        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
+        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _stats.JumpForce);
     }
 
     private void Move(float velocity)
     {
-        _velocity = velocity * _moveSpeed;
-        _rb.linearVelocity = new(_velocity, _rb.linearVelocity.y);
+        _rb.linearVelocity = new(velocity * _stats.MoveSpeed, _rb.linearVelocity.y);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Border"))
         {
-            OnDied?.Invoke();
+            _stats.TakeDamage(9999);
         }
     }
 }

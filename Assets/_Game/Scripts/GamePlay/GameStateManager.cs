@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 public class GameStateManager : IDisposable
 {
-    private readonly PlayerController _player;
+    private readonly PlayerStats _player;
     private readonly GeneralInputHandler _input;
 
     private readonly Dictionary<Type, GameState> _states = new();
     private GameState _state;
 
-    public GameStateManager(PlayerController player, GeneralInputHandler input)
+    public GameStateManager(PlayerStats player, GeneralInputHandler input)
     {
         _input = input;
         _input.OnRestartClicked += RestartGameOnDeath;

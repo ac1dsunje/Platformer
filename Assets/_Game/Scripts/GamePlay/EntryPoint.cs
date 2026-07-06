@@ -22,19 +22,20 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private GameObject _pauseScreenPrefab;
 
     private LevelController _levelController;
-    private PlayerController _player;
+    private PlayerController _playerView;
+    private PlayerStats _playerModel;
     private GameStateManager _gameStateManager;
 
     private void Awake()
     {
         _levelController = SpawnLevel();
-        _player = SpawnPlayer();
+        SpawnPlayer();
 
-        _gameStateManager = new(_player, _input);
+        _gameStateManager = new(_playerModel, _input);
 
         RegisterStates();
 
-        _camera.Construct(_player.transform, _speedFollow);
+        _camera.Construct(_playerView.transform, _speedFollow);
     }
 
     private LevelController SpawnLevel()
@@ -42,10 +43,11 @@ public class EntryPoint : MonoBehaviour
         return Instantiate(_levelPrefab).GetComponent<LevelController>();
     }
 
-    private PlayerController SpawnPlayer()
+    private void SpawnPlayer()
     {
-        return Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
-            .GetComponent<PlayerController>().Construct(_movementInput, _playerConfig.HealthConfig, _playerConfig.MovementConfig);
+        _playerModel = new(_playerConfig.HealthConfig, _playerConfig.MovementConfig);
+        _playerView = Instantiate(_playerConfig.Prefab, _levelController.GetSpawnPosition.position, Quaternion.identity)
+            .GetComponent<PlayerController>().Construct(_movementInput, _playerModel);
     }
 
     private void RegisterStates()
@@ -61,7 +63,7 @@ public class EntryPoint : MonoBehaviour
     private UIManager CreateUIManager()
     {
         var overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
-        overlay.Initialize(_levelController, _player);
+        overlay.Initialize(_levelController, _playerView);
 
         var deathScreen = Instantiate(_deathScreenPrefab, _canvas.transform, false).GetComponent<DeathScreen>();
 
