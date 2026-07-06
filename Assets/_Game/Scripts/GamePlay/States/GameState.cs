@@ -1,4 +1,6 @@
-﻿public abstract class GameState
+﻿using UnityEngine;
+
+public abstract class GameState: State
 {
     protected UIManager uiManager;
 
@@ -7,13 +9,13 @@
         uiManager = ui;
     }
 
-    public virtual void Enter()
+    public override void Enter()
     {
-
+        Debug.Log($"Entered {GetType().Name}");
     }
 
-    public virtual void Exit()
+    public override void Exit()
     {
-
+        Debug.Log($"Exited {GetType().Name}");
     }
 }

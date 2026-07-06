@@ -1,15 +1,14 @@
-﻿using UnityEngine;
-
-public class ExploringState: GameState
+﻿public class ExploringState: GameState
 {
     public override void Enter()
     {
-        Debug.Log("Entered exploring state");
+        base.Enter();
+
         uiManager.SetExploringScreens();
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit exploring state");
+        base.Exit();
     }
 }
