@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e178b1c590cbacb4c8cfbeba86fa12fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _collider: {fileID: 5000656217197584575}
 --- !u!1 &8625759281144294940
 GameObject:
   m_ObjectHideFlags: 0

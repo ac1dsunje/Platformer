@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private CapsuleCollider2D _collider;
     private IMovementInput _input;
     private Rigidbody2D _rb;
 
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private bool GetIsOnGround()
     {
-        _isOnGround = Physics2D.CapsuleCast(transform.position, new Vector2(.9f, .9f), CapsuleDirection2D.Vertical, 0, Vector2.down, 0.15f);
+        _isOnGround = Physics2D.CapsuleCast(transform.position, _collider.size, _collider.direction, 0, Vector2.down, 0.15f);
         return _isOnGround;
     }
 
