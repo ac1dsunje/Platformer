@@ -1,14 +1,19 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
 {
-    [SerializeField] private CapsuleCollider2D _collider;
-    private IMovementInput _input;
+    private CapsuleCollider2D _collider;
     private Rigidbody2D _rb;
+
+    private IMovementInput _input;
     private PlayerStats _stats;
 
-    private void Awake() => _rb = GetComponent<Rigidbody2D>();
+    private void Awake() {
+        _rb = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<CapsuleCollider2D>();
+    }
 
     public PlayerController Construct(IMovementInput input, PlayerStats stats)
     {
