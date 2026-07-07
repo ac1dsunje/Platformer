@@ -6,14 +6,13 @@ public class MPMovingState : MPState
 
     public override void FixedDo()
     {
-        Vector2 newPosition = Vector2.MoveTowards(
-            Context.RigidBody.position,
+        Context.transform.position = Vector2.MoveTowards(
+            Context.transform.position,
             Context.CurrentTarget,
             Context.Speed * Time.fixedDeltaTime
         );
-        Context.RigidBody.MovePosition(newPosition);
 
-        if (Context.RigidBody.position == Context.CurrentTarget)
+        if (new Vector2(Context.transform.position.x, Context.transform.position.y) == Context.CurrentTarget)
         {
             IsComplete = true;
         }

@@ -78,4 +78,14 @@ public class MovingPlatformController : MonoBehaviour
     {
         CurrentTarget = (CurrentTarget == _startPoint) ? _endPoint : _startPoint;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.gameObject.transform.SetParent(transform, true);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        collision.gameObject.transform.SetParent(null, true);
+    }
 }
