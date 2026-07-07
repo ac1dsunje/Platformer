@@ -2,19 +2,45 @@
 
 public class MPMovingState : MPState
 {
+    private float _speed;
+    private int _pointIndex;
+    private Vector3 _currentTarget;
+
     public MPMovingState(MovingPlatformController context) : base(context) { }
 
-    public override void FixedDo()
+    public override void Enter()
     {
-        Context.transform.position = Vector2.MoveTowards(
-            Context.transform.position,
-            Context.CurrentTarget,
-            Context.Speed * Time.fixedDeltaTime
+        IsComplete = false;
+        _currentTarget = Platform.Points[_pointIndex].Point;
+        float distance = Vector3.Distance(Platform.transform.position, _currentTarget);
+        _speed = distance / Platform.MovementTime;
+    }
+
+    public override void Do()
+    {
+        Platform.transform.position = Vector3.MoveTowards(
+            Platform.transform.position,
+            _currentTarget,
+            _speed * Time.deltaTime
         );
 
-        if (new Vector2(Context.transform.position.x, Context.transform.position.y) == Context.CurrentTarget)
+        if (Platform.transform.position == _currentTarget)
         {
             IsComplete = true;
+        }
+    }
+
+    public override void Exit()
+    {
+        SetNextIndex();
+    }
+
+    private void SetNextIndex()
+    {
+        _pointIndex++;
+        if (_pointIndex >= Platform.Points.Length)
+        {
+            _pointIndex = 0;
         }
     }
 }

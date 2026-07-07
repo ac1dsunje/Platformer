@@ -3,50 +3,44 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovingPlatformController : MonoBehaviour
 {
-    [SerializeField] private Vector2 _startPoint;
-    [SerializeField] private Vector2 _endPoint;
+    [SerializeField] private MovingPoint[] _points;
     [SerializeField] private float _movementTime;
     [SerializeField] private float _waitingTime;
 
     public Rigidbody2D RigidBody { get; private set; }
-    public float Speed {get; private set;}
-    public Vector2 CurrentTarget { get; private set; }
-
+    public float MovementTime => _movementTime;
     public float WaitTime => _waitingTime;
+    public MovingPoint[] Points => _points;
 
     private MPState _currentState;
     private MPMovingState _movingState;
     private MPWaitingState _waitingState;
 
-    [ContextMenu("Set Start Point")]
-    private void SetStartPoint()
+    private void OnValidate()
     {
-        _startPoint = new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f);
-    }
-
-    [ContextMenu("Set End Point")]
-    private void SetEndPoint()
-    {
-        _endPoint = new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f);
+        foreach (var point in _points)
+        {
+            if(point.SetPoint)
+            {
+                point.Point = transform.position;
+                point.SetPoint = false;
+            }
+        }
     }
 
     private void Start()
     {
         RigidBody = GetComponent<Rigidbody2D>();
 
-        float distance = Vector2.Distance(_startPoint, _endPoint);
-        Speed = distance / _movementTime;
-
         _movingState = new MPMovingState(this);
         _waitingState = new MPWaitingState(this);
 
-        CurrentTarget = _endPoint;
         ChangeState(_movingState);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        _currentState?.FixedDo();
+        _currentState?.Do();
 
         if (_currentState != null && _currentState.IsComplete)
         {
@@ -58,7 +52,6 @@ public class MovingPlatformController : MonoBehaviour
     {
         if (_currentState == _movingState)
         {
-            SwitchTarget();
             ChangeState(_waitingState);
         }
         else if (_currentState == _waitingState)
@@ -72,11 +65,6 @@ public class MovingPlatformController : MonoBehaviour
         _currentState?.Exit();
         _currentState = newState;
         _currentState.Enter();
-    }
-
-    private void SwitchTarget()
-    {
-        CurrentTarget = (CurrentTarget == _startPoint) ? _endPoint : _startPoint;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

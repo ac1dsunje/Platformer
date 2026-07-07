@@ -1,9 +1,9 @@
 ﻿public abstract class MPState: State
 {
-    protected MovingPlatformController Context;
+    protected MovingPlatformController Platform;
 
-    public MPState(MovingPlatformController context)
+    public MPState(MovingPlatformController platform)
     {
-        Context = context;
+        Platform = platform;
     }
 }

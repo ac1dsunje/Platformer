@@ -16,4 +16,5 @@ public abstract class State
     }
 
     public virtual void FixedDo() { }
+    public virtual void Do() { }
 }

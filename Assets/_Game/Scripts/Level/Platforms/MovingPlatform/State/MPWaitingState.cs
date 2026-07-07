@@ -12,11 +12,11 @@ public class MPWaitingState : MPState
         _timer = 0f;
     }
 
-    public override void FixedDo()
+    public override void Do()
     {
-        _timer += Time.fixedDeltaTime;
+        _timer += Time.deltaTime;
 
-        if (_timer >= Context.WaitTime)
+        if (_timer >= Platform.WaitTime)
         {
             IsComplete = true;
         }
