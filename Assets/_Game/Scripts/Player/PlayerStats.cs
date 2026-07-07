@@ -2,8 +2,8 @@
 
 public class PlayerStats
 {
-    public float MaxHealth { get; private set; }
-    public float Health { get; private set; }
+    public int MaxHealth { get; private set; }
+    public int Health { get; private set; }
 
     public event Action OnDied;
 
@@ -14,7 +14,6 @@ public class PlayerStats
 
     public PlayerStats(HealthConfig healthConfig, MovementConfig movementConfig)
     {
-
         MaxHealth = healthConfig.MaxHealth;
         Health = healthConfig.MaxHealth;
 

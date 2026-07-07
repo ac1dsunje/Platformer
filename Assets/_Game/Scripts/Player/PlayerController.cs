@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
     {
         if (collision.CompareTag("Border"))
         {
-            _stats.TakeDamage(9999);
+            _stats.TakeDamage(_stats.MaxHealth);
         }
     }
 
