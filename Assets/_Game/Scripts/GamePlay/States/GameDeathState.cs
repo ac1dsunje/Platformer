@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class DeathState : GameState
+public class GameDeathState : GameState
 {
-    public DeathState(UIManager ui) : base(ui) { }
+    public GameDeathState(UIManager ui) : base(ui) { }
     public override void Enter()
     {
         base.Enter();

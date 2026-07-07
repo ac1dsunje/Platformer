@@ -21,12 +21,12 @@ public class GameStateManager : IDisposable
 
     private void HandlePlayerDied()
     {
-        ChangeState<DeathState>();
+        ChangeState<GameDeathState>();
     }
 
     private void RestartGameOnDeath()
     {
-        if (IsInState<DeathState>())
+        if (IsInState<GameDeathState>())
             RestartGame();
     }
 
@@ -37,7 +37,7 @@ public class GameStateManager : IDisposable
 
     public void GoToMainMenu()
     {
-        if (IsInState<PauseState>())
+        if (IsInState<GamePauseState>())
         {
             ExitCurrentState();
             SceneLoader.SetMainMenuScene();
@@ -46,13 +46,13 @@ public class GameStateManager : IDisposable
 
     private void PauseGame()
     {
-        if (!IsInState<PauseState>())
-            ChangeState<PauseState>();
+        if (!IsInState<GamePauseState>())
+            ChangeState<GamePauseState>();
     }
 
     public void ResumeGame()
     {
-        ChangeState<ExploringState>();
+        ChangeState<GameExploringState>();
     }
 
     private void RestartGame()

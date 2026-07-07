@@ -1,6 +1,6 @@
-﻿public class ExploringState: GameState
+﻿public class GameExploringState: GameState
 {
-    public ExploringState(UIManager ui) : base(ui) { }
+    public GameExploringState(UIManager ui) : base(ui) { }
     public override void Enter()
     {
         base.Enter();

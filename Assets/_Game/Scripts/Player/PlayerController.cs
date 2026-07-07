@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
     private IMovementInput _input;
     private PlayerStats _stats;
 
+    private PlayerState _state;
+
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
@@ -68,14 +70,6 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
         else if (velocity > 0)
         {
             _sprite.flipX = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Border"))
-        {
-            _stats.TakeDamage(_stats.MaxHealth);
         }
     }
 

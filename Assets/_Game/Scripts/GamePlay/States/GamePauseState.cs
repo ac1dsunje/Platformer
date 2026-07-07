@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class PauseState : GameState
+public class GamePauseState : GameState
 {
-    public PauseState(UIManager ui) : base(ui) { }
+    public GamePauseState(UIManager ui) : base(ui) { }
     public override void Enter()
     {
         base.Enter();

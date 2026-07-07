@@ -37,4 +37,16 @@ public class LevelController : MonoBehaviour
         float sineValue = (Mathf.Sin(t * Mathf.PI * 2f) + 1f) / 2f;
         _light.intensity = Mathf.Lerp(_minIntensity, _maxIntensity, sineValue);
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<IDamageAble>(out var damageable))
+        {
+            damageable.TakeDamage(999);
+        }
+        else
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }
