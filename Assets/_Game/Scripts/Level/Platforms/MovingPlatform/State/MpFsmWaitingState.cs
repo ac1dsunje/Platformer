@@ -2,11 +2,11 @@
 
 namespace _Game.Scripts.Level.Platforms.MovingPlatform.State
 {
-public class MpWaitingState : MpState
+public class MpFsmWaitingState : MpFsmState
 {
     private float _timer;
 
-    public MpWaitingState(MovingPlatformController context) : base(context) { }
+    public MpFsmWaitingState(MovingPlatformController context) : base(context) { }
 
     public override void Enter()
     {

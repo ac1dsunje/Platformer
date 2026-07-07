@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
     private IMovementInput _input;
     private PlayerStats _stats;
 
-    private PlayerState _state;
+    private PlayerFsmState _fsmState;
 
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();

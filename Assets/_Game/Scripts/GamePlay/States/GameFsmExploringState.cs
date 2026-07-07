@@ -1,8 +1,8 @@
 ﻿namespace _Game.Scripts.GamePlay.States
 {
-public class GameExploringState: GameState
+public class GameFsmExploringState: GameFsmState
 {
-    public GameExploringState(UIManager ui) : base(ui) { }
+    public GameFsmExploringState(UIManager ui) : base(ui) { }
     public override void Enter()
     {
         base.Enter();

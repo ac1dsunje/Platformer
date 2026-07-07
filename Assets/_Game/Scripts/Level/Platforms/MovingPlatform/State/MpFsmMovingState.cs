@@ -2,17 +2,17 @@
 
 namespace _Game.Scripts.Level.Platforms.MovingPlatform.State
 {
-public class MpMovingState : MpState
+public class MpFsmMovingState : MpFsmState
 {
     private float _speed;
     private int _pointIndex;
     private Vector3 _currentTarget;
 
-    public MpMovingState(MovingPlatformController context) : base(context) { }
+    public MpFsmMovingState(MovingPlatformController platform) : base(platform) { }
 
     public override void Enter()
     {
-        IsComplete = false;
+        base.Enter();
         _currentTarget = Platform.Points[_pointIndex].Point;
         var distance = Vector3.Distance(Platform.transform.position, _currentTarget);
         _speed = distance / Platform.MovementTime;

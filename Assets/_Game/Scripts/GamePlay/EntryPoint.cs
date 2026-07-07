@@ -63,10 +63,10 @@ public class EntryPoint : MonoBehaviour
     {
         var ui = CreateUIManager();
 
-        _gameStateManager.AddState(new GameExploringState(ui));
-        _gameStateManager.AddState(new GameDeathState(ui));
-        _gameStateManager.AddState(new GamePauseState(ui));
-        _gameStateManager.ChangeState<GameExploringState>();
+        _gameStateManager.AddState(new GameFsmExploringState(ui));
+        _gameStateManager.AddState(new GameFsmDeathState(ui));
+        _gameStateManager.AddState(new GameFsmPauseState(ui));
+        _gameStateManager.ChangeState<GameFsmExploringState>();
     }
 
     private UIManager CreateUIManager()

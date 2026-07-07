@@ -11,8 +11,8 @@ public class GameStateManager : IDisposable
     private readonly PlayerStats _player;
     private readonly GeneralInputHandler _input;
 
-    private readonly Dictionary<Type, GameState> _states = new();
-    private GameState _state;
+    private readonly Dictionary<Type, GameFsmState> _states = new();
+    private GameFsmState _fsmState;
 
     public GameStateManager(PlayerStats player, GeneralInputHandler input)
     {
@@ -26,12 +26,12 @@ public class GameStateManager : IDisposable
 
     private void HandlePlayerDied()
     {
-        ChangeState<GameDeathState>();
+        ChangeState<GameFsmDeathState>();
     }
 
     private void RestartGameOnDeath()
     {
-        if (IsInState<GameDeathState>())
+        if (IsInState<GameFsmDeathState>())
             RestartGame();
     }
 
@@ -42,7 +42,7 @@ public class GameStateManager : IDisposable
 
     public void GoToMainMenu()
     {
-        if (IsInState<GamePauseState>())
+        if (IsInState<GameFsmPauseState>())
         {
             ExitCurrentState();
             SceneLoader.SetMainMenuScene();
@@ -51,13 +51,13 @@ public class GameStateManager : IDisposable
 
     private void PauseGame()
     {
-        if (!IsInState<GamePauseState>())
-            ChangeState<GamePauseState>();
+        if (!IsInState<GameFsmPauseState>())
+            ChangeState<GameFsmPauseState>();
     }
 
     public void ResumeGame()
     {
-        ChangeState<GameExploringState>();
+        ChangeState<GameFsmExploringState>();
     }
 
     private void RestartGame()
@@ -67,31 +67,31 @@ public class GameStateManager : IDisposable
     }
 
 
-    public void AddState(GameState state)
+    public void AddState(GameFsmState fsmState)
     {
-        _states.Add(state.GetType(), state);
+        _states.Add(fsmState.GetType(), fsmState);
     }
 
-    public void ChangeState<T>() where T : GameState
+    public void ChangeState<T>() where T : GameFsmState
     {
         if (IsInState<T>()) return;
 
         var type = typeof(T);
 
         if (!_states.TryGetValue(type, out var state)) return;
-        _state?.Exit();
-        _state = state;
-        _state.Enter();
+        _fsmState?.Exit();
+        _fsmState = state;
+        _fsmState.Enter();
     }
 
-    private bool IsInState<T>() where T : GameState
+    private bool IsInState<T>() where T : GameFsmState
     {
-        return _state?.GetType() == typeof(T);
+        return _fsmState?.GetType() == typeof(T);
     }
 
     private void ExitCurrentState()
     {
-        _state?.Exit();
+        _fsmState?.Exit();
     }
 
     public void Dispose()

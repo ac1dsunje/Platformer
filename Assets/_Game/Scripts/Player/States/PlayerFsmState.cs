@@ -2,11 +2,11 @@
 
 namespace _Game.Scripts.Player.States
 {
-public abstract class PlayerState : State
+public abstract class PlayerFsmState : FsmState
 {
     private PlayerController _context;
 
-    protected PlayerState(PlayerController context)
+    protected PlayerFsmState(PlayerController context)
     {
         _context = context;
     }

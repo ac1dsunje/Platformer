@@ -15,9 +15,9 @@ public class MovingPlatformController : MonoBehaviour
     public float WaitTime => _waitingTime;
     public MovingPoint[] Points => _points;
 
-    private MpState _currentState;
-    private MpMovingState _movingState;
-    private MpWaitingState _waitingState;
+    private MpFsmState _currentFsmState;
+    private MpFsmMovingState _fsmMovingState;
+    private MpFsmWaitingState _fsmWaitingState;
 
     private void OnValidate()
     {
@@ -33,17 +33,17 @@ public class MovingPlatformController : MonoBehaviour
     {
         RigidBody = GetComponent<Rigidbody2D>();
 
-        _movingState = new MpMovingState(this);
-        _waitingState = new MpWaitingState(this);
+        _fsmMovingState = new MpFsmMovingState(this);
+        _fsmWaitingState = new MpFsmWaitingState(this);
 
-        ChangeState(_movingState);
+        ChangeState(_fsmMovingState);
     }
 
     private void Update()
     {
-        _currentState?.Do();
+        _currentFsmState?.Do();
 
-        if (_currentState != null && _currentState.IsComplete)
+        if (_currentFsmState != null && _currentFsmState.IsComplete)
         {
             HandleStateCompletion();
         }
@@ -51,21 +51,21 @@ public class MovingPlatformController : MonoBehaviour
 
     private void HandleStateCompletion()
     {
-        if (_currentState == _movingState)
+        if (_currentFsmState == _fsmMovingState)
         {
-            ChangeState(_waitingState);
+            ChangeState(_fsmWaitingState);
         }
-        else if (_currentState == _waitingState)
+        else if (_currentFsmState == _fsmWaitingState)
         {
-            ChangeState(_movingState);
+            ChangeState(_fsmMovingState);
         }
     }
 
-    private void ChangeState(MpState newState)
+    private void ChangeState(MpFsmState newFsmState)
     {
-        _currentState?.Exit();
-        _currentState = newState;
-        _currentState.Enter();
+        _currentFsmState?.Exit();
+        _currentFsmState = newFsmState;
+        _currentFsmState.Enter();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

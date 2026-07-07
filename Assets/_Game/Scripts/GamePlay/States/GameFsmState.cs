@@ -2,11 +2,11 @@
 
 namespace _Game.Scripts.GamePlay.States
 {
-public abstract class GameState: State
+public abstract class GameFsmState: FsmState
 {
     protected UIManager uiManager;
 
-    public GameState(UIManager ui)
+    public GameFsmState(UIManager ui)
     {
         uiManager = ui;
     }

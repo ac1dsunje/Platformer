@@ -2,7 +2,7 @@
 
 namespace _Game.Scripts.FSM
 {
-public abstract class State
+public abstract class FsmState
 {
     public bool IsComplete { get; protected set; }
 

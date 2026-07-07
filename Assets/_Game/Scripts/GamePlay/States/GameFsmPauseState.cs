@@ -2,21 +2,19 @@
 using _Game.Scripts.GamePlay.States;
 using UnityEngine;
 
-public class GameDeathState : GameState
+public class GameFsmPauseState : GameFsmState
 {
-    public GameDeathState(UIManager ui) : base(ui) { }
+    public GameFsmPauseState(UIManager ui) : base(ui) { }
     public override void Enter()
     {
         base.Enter();
-        uiManager.SetDeathScreens();
+        uiManager.SetPauseScreens();
 
         Time.timeScale = 0f;
     }
 
     public override void Exit()
     {
-        base.Exit();
-
         Time.timeScale = 1f;
     }
 }
