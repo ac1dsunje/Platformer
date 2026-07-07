@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
@@ -9,7 +10,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private StandardMovementInput _movementInput;
 
     [Header("Camera")]
-    [SerializeField] private CameraController _camera;
+    [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private float _speedFollow;
 
     [Header("Level")]
@@ -35,7 +36,7 @@ public class EntryPoint : MonoBehaviour
 
         RegisterStates();
 
-        _camera.Construct(_playerView.transform, _speedFollow);
+        _camera.Follow = _playerView.transform;
     }
 
     private LevelController SpawnLevel()

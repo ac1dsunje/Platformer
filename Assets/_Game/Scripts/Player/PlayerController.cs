@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
 {
     [SerializeField] private AnimationClip _deathAnim;
@@ -13,7 +12,6 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
     private CapsuleCollider2D _collider;
     private Rigidbody2D _rb;
     private Animator _animator;
-    private SpriteRenderer _sprite;
 
     private IMovementInput _input;
     private PlayerStats _stats;
@@ -24,7 +22,6 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
         _animator = GetComponent<Animator>();
-        _sprite = GetComponent<SpriteRenderer>();
     }
 
     public PlayerController Construct(IMovementInput input, PlayerStats stats)
@@ -65,12 +62,20 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
 
         if (velocity < 0)
         {
-            _sprite.flipX = true;
+            Flip(true);
         }
         else if (velocity > 0)
         {
-            _sprite.flipX = false;
+            Flip(false);
         }
+    }
+
+    private void Flip(bool state)
+    {
+        float rotationY = state ? 180f : 0f;
+
+        Vector3 rotator = new(transform.rotation.x, rotationY, transform.rotation.z);
+        transform.rotation = Quaternion.Euler(rotator);
     }
 
     private void HandleDeath()
