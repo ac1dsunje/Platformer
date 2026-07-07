@@ -21,6 +21,8 @@ public class GamePlayOverlayScreen: ScreenManager
         _level = level;
         _player = player;
 
+        _player.OnTakeHit += UpdateHealthBar;
+
         SetHealthBar();
 
         _isInited = true;
@@ -43,11 +45,27 @@ public class GamePlayOverlayScreen: ScreenManager
         WriteTime(_level.TimeSec);
     }
 
+    private void UpdateHealthBar(int health, int maxHealth)
+    {
+        for(int i = 0; i< maxHealth; i++)
+        {
+            if(i < health)
+                _healthSlots[i].Set();
+            else
+                _healthSlots[i].UnSet();
+        }
+    }
+
     private void WriteTime(int sec)
     {
         var seconds = sec % 60f;
         var minutes = Mathf.Floor(sec / 60f);
 
         _timerText.text = String.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    private void OnDestroy()
+    {
+        _player.OnTakeHit -= UpdateHealthBar;
     }
 }

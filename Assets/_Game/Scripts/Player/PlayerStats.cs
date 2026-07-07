@@ -6,6 +6,7 @@ public class PlayerStats
     public int Health { get; private set; }
 
     public event Action OnDied;
+    public event Action<int, int> OnTakeHit;
 
     public float MoveSpeed { get; private set; }
     public float JumpForce { get; private set; }
@@ -28,7 +29,9 @@ public class PlayerStats
         {
             Health = 0;
             OnDied?.Invoke();
+            return;
         }
+        OnTakeHit?.Invoke(Health, MaxHealth);
     }
 
     public void AddCoins(int value)
