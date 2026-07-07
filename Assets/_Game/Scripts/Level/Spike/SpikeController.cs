@@ -2,11 +2,13 @@
 
 public class SpikeController: MonoBehaviour
 {
+    [SerializeField] private int _damage = 1;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        if(collision.collider.TryGetComponent<IDamageAble>(out var damageable))
         {
-            Debug.Log("Hit player!");
+            damageable.TakeDamage(_damage);
         }
     }
 }

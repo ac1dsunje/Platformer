@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
 {
     [SerializeField] private CapsuleCollider2D _collider;
     private IMovementInput _input;
@@ -50,4 +50,8 @@ public class PlayerController : MonoBehaviour
             _stats.TakeDamage(9999);
         }
     }
+
+    public void TakeDamage(int amount) => _stats.TakeDamage(amount);
+
+    public void AddCoins(int value) => _stats.AddCoins(value);
 }

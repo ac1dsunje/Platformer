@@ -5,10 +5,12 @@ public class PlayerStats
     public float MaxHealth { get; private set; }
     public float Health { get; private set; }
 
+    public event Action OnDied;
+
     public float MoveSpeed { get; private set; }
     public float JumpForce { get; private set; }
 
-    public event Action OnDied;
+    public int Coins { get; private set; }
 
     public PlayerStats(HealthConfig healthConfig, MovementConfig movementConfig)
     {
@@ -28,5 +30,10 @@ public class PlayerStats
             Health = 0;
             OnDied?.Invoke();
         }
+    }
+
+    public void AddCoins(int value)
+    {
+        Coins += value;
     }
 }

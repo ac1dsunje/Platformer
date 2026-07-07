@@ -10,13 +10,13 @@ public class GamePlayOverlayScreen: ScreenManager
     [SerializeField] private GameObject _healthSlotPrefab;
 
     private LevelController _level;
-    private PlayerController _player;
+    private PlayerStats _player;
 
     private List<HealthSlotUI> _healthSlots = new();
 
     private bool _isInited;
 
-    public void Initialize(LevelController level, PlayerController player)
+    public void Initialize(LevelController level, PlayerStats player)
     {
         _level = level;
         _player = player;

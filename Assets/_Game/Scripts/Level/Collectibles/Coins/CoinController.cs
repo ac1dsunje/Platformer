@@ -23,11 +23,9 @@ public class CoinController: MonoBehaviour
 
     private void Collect(Collider2D collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.TryGetComponent<ICoinReceiver>(out var coinReceiver))
         {
-            Debug.Log($"Coin collected value = {_config.Value}");
-
-            //ToDo: add coins to player
+            coinReceiver.AddCoins(_config.Value);
             Destroy(gameObject);
         }
     }
