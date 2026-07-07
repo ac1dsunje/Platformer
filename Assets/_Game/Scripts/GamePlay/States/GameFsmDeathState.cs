@@ -8,7 +8,7 @@ public class GameFsmDeathState : GameFsmState
     public override void Enter()
     {
         base.Enter();
-        uiManager.SetDeathScreens();
+        UIManager.SetDeathScreens();
 
         Time.timeScale = 0f;
     }

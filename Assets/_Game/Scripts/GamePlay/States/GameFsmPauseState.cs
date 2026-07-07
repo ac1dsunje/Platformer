@@ -8,7 +8,7 @@ public class GameFsmPauseState : GameFsmState
     public override void Enter()
     {
         base.Enter();
-        uiManager.SetPauseScreens();
+        UIManager.SetPauseScreens();
 
         Time.timeScale = 0f;
     }

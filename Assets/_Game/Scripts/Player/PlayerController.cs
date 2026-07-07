@@ -1,6 +1,5 @@
 using _Game.Scripts.Input;
 using _Game.Scripts.Player.Interfaces;
-using _Game.Scripts.Player.States;
 using UnityEngine;
 
 namespace _Game.Scripts.Player
@@ -20,8 +19,6 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
 
     private IMovementInput _input;
     private PlayerStats _stats;
-
-    private PlayerFsmState _fsmState;
 
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();
@@ -63,7 +60,7 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
 
     private void Move(float velocity)
     {
-        _rb.linearVelocity = new(velocity * _stats.MoveSpeed, _rb.linearVelocity.y);
+        _rb.linearVelocity = new Vector2(velocity * _stats.MoveSpeed, _rb.linearVelocity.y);
 
         if (velocity < 0)
         {

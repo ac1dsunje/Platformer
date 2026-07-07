@@ -37,7 +37,7 @@ public class GamePlayOverlayScreen: ScreenManager
 
     private void SetHealthBar()
     {
-        for(int i = 0; i<_player.MaxHealth; i++)
+        for(var i = 0; i<_player.MaxHealth; i++)
         {
             var slot = Instantiate(_healthSlotPrefab, _healthContainer, false).GetComponent<HealthSlotUI>();
             slot.Set();
@@ -66,7 +66,7 @@ public class GamePlayOverlayScreen: ScreenManager
         var seconds = sec % 60f;
         var minutes = Mathf.Floor(sec / 60f);
 
-        _timerText.text = String.Format("{0:00}:{1:00}", minutes, seconds);
+        _timerText.text = $"{minutes:00}:{seconds:00}";
     }
 
     private void Update()

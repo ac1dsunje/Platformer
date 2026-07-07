@@ -7,7 +7,7 @@ public class GameFsmExploringState: GameFsmState
     {
         base.Enter();
 
-        uiManager.SetExploringScreens();
+        UIManager.SetExploringScreens();
     }
 }
 }
