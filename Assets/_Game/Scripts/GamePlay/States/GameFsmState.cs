@@ -4,9 +4,9 @@ namespace _Game.Scripts.GamePlay.States
 {
 public abstract class GameFsmState: FsmState
 {
-    protected UIManager uiManager;
+    protected readonly UIManager uiManager;
 
-    public GameFsmState(UIManager ui)
+    protected GameFsmState(UIManager ui)
     {
         uiManager = ui;
     }

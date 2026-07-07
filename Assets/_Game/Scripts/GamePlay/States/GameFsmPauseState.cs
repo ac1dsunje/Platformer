@@ -1,7 +1,7 @@
-﻿using _Game.Scripts.GamePlay;
-using _Game.Scripts.GamePlay.States;
-using UnityEngine;
+﻿using UnityEngine;
 
+namespace _Game.Scripts.GamePlay.States
+{
 public class GameFsmPauseState : GameFsmState
 {
     public GameFsmPauseState(UIManager ui) : base(ui) { }
@@ -17,4 +17,5 @@ public class GameFsmPauseState : GameFsmState
     {
         Time.timeScale = 1f;
     }
+}
 }
