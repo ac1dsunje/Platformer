@@ -12,6 +12,7 @@ public class PlayerStats
     public float JumpForce { get; private set; }
 
     public int Coins { get; private set; }
+    public event Action<int> OnCoinAdded;
 
     public PlayerStats(HealthConfig healthConfig, MovementConfig movementConfig)
     {
@@ -37,5 +38,6 @@ public class PlayerStats
     public void AddCoins(int value)
     {
         Coins += value;
+        OnCoinAdded?.Invoke(Coins);
     }
 }
