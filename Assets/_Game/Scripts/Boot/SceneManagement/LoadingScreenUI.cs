@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using _Game.Scripts.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 

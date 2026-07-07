@@ -1,8 +1,11 @@
 ﻿using System;
+using _Game.Scripts.Player.configs;
 
+namespace _Game.Scripts.Player
+{
 public class PlayerStats
 {
-    public int MaxHealth { get; private set; }
+    public int MaxHealth { get; }
     public int Health { get; private set; }
 
     public event Action OnDied;
@@ -40,4 +43,5 @@ public class PlayerStats
         Coins += value;
         OnCoinAdded?.Invoke(Coins);
     }
+}
 }

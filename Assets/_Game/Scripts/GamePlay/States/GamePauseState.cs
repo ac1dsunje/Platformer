@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using _Game.Scripts.GamePlay;
+using _Game.Scripts.GamePlay.States;
+using UnityEngine;
 
 public class GamePauseState : GameState
 {
@@ -13,8 +15,6 @@ public class GamePauseState : GameState
 
     public override void Exit()
     {
-        base.Exit();
-
         Time.timeScale = 1f;
     }
 }

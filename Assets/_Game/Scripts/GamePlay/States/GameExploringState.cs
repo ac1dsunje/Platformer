@@ -1,4 +1,6 @@
-﻿public class GameExploringState: GameState
+﻿namespace _Game.Scripts.GamePlay.States
+{
+public class GameExploringState: GameState
 {
     public GameExploringState(UIManager ui) : base(ui) { }
     public override void Enter()
@@ -7,9 +9,5 @@
 
         uiManager.SetExploringScreens();
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
+}
 }

@@ -1,4 +1,8 @@
-﻿public abstract class GameState: State
+﻿using _Game.Scripts.FSM;
+
+namespace _Game.Scripts.GamePlay.States
+{
+public abstract class GameState: State
 {
     protected UIManager uiManager;
 
@@ -6,4 +10,5 @@
     {
         uiManager = ui;
     }
+}
 }

@@ -1,6 +1,14 @@
+using _Game.Scripts.GamePlay.States;
+using _Game.Scripts.Input;
+using _Game.Scripts.Level;
+using _Game.Scripts.Player;
+using _Game.Scripts.Player.configs;
+using _Game.Scripts.UI;
 using Cinemachine;
 using UnityEngine;
 
+namespace _Game.Scripts.GamePlay
+{
 public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private PlayerConfig _playerConfig;
@@ -78,4 +86,5 @@ public class EntryPoint : MonoBehaviour
     {
         _gameStateManager?.Dispose();
     }
+}
 }

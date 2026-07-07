@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using _Game.Scripts.Player.Interfaces;
+using UnityEngine;
 
+namespace _Game.Scripts.Level.Collectibles.Coins
+{
 public class CoinController: MonoBehaviour
 {
     [SerializeField] private CoinConfig _config;
@@ -21,12 +24,11 @@ public class CoinController: MonoBehaviour
         Collect(collision);
     }
 
-    private void Collect(Collider2D collider)
+    private void Collect(Collider2D other)
     {
-        if (collider.TryGetComponent<ICoinReceiver>(out var coinReceiver))
-        {
-            coinReceiver.AddCoins(_config.Value);
-            Destroy(gameObject);
-        }
+        if (!other.TryGetComponent<ICoinReceiver>(out var coinReceiver)) return;
+        coinReceiver.AddCoins(_config.Value);
+        Destroy(gameObject);
     }
+}
 }

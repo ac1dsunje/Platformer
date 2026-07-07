@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
+namespace _Game.Scripts.Input
+{
 public class GeneralInputHandler: MonoBehaviour
 {
     public event Action OnRestartClicked;
@@ -8,14 +10,15 @@ public class GeneralInputHandler: MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.R))
         {
             OnRestartClicked?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
         {
             OnPauseClicked?.Invoke();
         }
     }
+}
 }

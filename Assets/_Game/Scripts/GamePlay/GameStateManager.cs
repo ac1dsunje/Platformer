@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Game.Scripts.GamePlay.States;
+using _Game.Scripts.Input;
+using _Game.Scripts.Player;
 
+namespace _Game.Scripts.GamePlay
+{
 public class GameStateManager : IDisposable
 {
     private readonly PlayerStats _player;
@@ -73,20 +78,18 @@ public class GameStateManager : IDisposable
 
         var type = typeof(T);
 
-        if (_states.TryGetValue(type, out var state))
-        {
-            _state?.Exit();
-            _state = state;
-            _state.Enter();
-        }
+        if (!_states.TryGetValue(type, out var state)) return;
+        _state?.Exit();
+        _state = state;
+        _state.Enter();
     }
 
-    protected bool IsInState<T>() where T : GameState
+    private bool IsInState<T>() where T : GameState
     {
         return _state?.GetType() == typeof(T);
     }
 
-    protected void ExitCurrentState()
+    private void ExitCurrentState()
     {
         _state?.Exit();
     }
@@ -97,4 +100,5 @@ public class GameStateManager : IDisposable
         _input.OnRestartClicked -= RestartGameOnDeath;
         _input.OnPauseClicked -= PauseGame;
     }
+}
 }

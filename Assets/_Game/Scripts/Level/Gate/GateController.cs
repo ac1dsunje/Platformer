@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace _Game.Scripts.Level.Gate
+{
 public class GateController: MonoBehaviour
 {
     [SerializeField] private GameObject _openedContainer;
@@ -16,4 +18,5 @@ public class GateController: MonoBehaviour
         _openedContainer.SetActive(false);
         _closedContainer.SetActive(true);
     }
+}
 }

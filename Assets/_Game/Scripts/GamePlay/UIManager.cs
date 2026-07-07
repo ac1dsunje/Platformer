@@ -1,4 +1,8 @@
-﻿public class UIManager
+﻿using _Game.Scripts.UI;
+
+namespace _Game.Scripts.GamePlay
+{
+public class UIManager
 {
     private readonly GamePlayOverlayScreen _overlay;
     private readonly DeathScreen _deathScreen;
@@ -31,4 +35,5 @@
         _deathScreen.Hide();
         _pauseScreen.Show();
     }
+}
 }

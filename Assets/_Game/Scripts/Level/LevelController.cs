@@ -1,6 +1,10 @@
+using _Game.Scripts.Level.Gate;
+using _Game.Scripts.Player.Interfaces;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+namespace _Game.Scripts.Level
+{
 public class LevelController : MonoBehaviour
 {
     [Header("Spawn & Gates")]
@@ -33,8 +37,8 @@ public class LevelController : MonoBehaviour
 
     private void UpdateLightIntensity()
     {
-        float t = (_time % _dayDurationSeconds) / _dayDurationSeconds;
-        float sineValue = (Mathf.Sin(t * Mathf.PI * 2f) + 1f) / 2f;
+        var t = (_time % _dayDurationSeconds) / _dayDurationSeconds;
+        var sineValue = (Mathf.Sin(t * Mathf.PI * 2f) + 1f) / 2f;
         _light.intensity = Mathf.Lerp(_minIntensity, _maxIntensity, sineValue);
     }
 
@@ -49,4 +53,5 @@ public class LevelController : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+}
 }

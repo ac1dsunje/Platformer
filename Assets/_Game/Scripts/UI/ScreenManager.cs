@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace _Game.Scripts.UI
+{
 [RequireComponent(typeof(CanvasGroup))]
 public abstract class ScreenManager: MonoBehaviour
 {
@@ -23,4 +25,5 @@ public abstract class ScreenManager: MonoBehaviour
         _screen.interactable = false;
         _screen.blocksRaycasts = false;
     }
+}
 }

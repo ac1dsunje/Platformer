@@ -1,9 +1,12 @@
-﻿public abstract class MPState: State
+﻿namespace _Game.Scripts.Level.Platforms.MovingPlatform.State
 {
-    protected MovingPlatformController Platform;
+public abstract class MpState: global::_Game.Scripts.FSM.State
+{
+    protected readonly MovingPlatformController Platform;
 
-    public MPState(MovingPlatformController platform)
+    protected MpState(MovingPlatformController platform)
     {
         Platform = platform;
     }
+}
 }

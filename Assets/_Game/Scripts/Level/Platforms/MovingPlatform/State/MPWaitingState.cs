@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-public class MPWaitingState : MPState
+namespace _Game.Scripts.Level.Platforms.MovingPlatform.State
+{
+public class MpWaitingState : MpState
 {
     private float _timer;
 
-    public MPWaitingState(MovingPlatformController context) : base(context) { }
+    public MpWaitingState(MovingPlatformController context) : base(context) { }
 
     public override void Enter()
     {
@@ -21,4 +23,5 @@ public class MPWaitingState : MPState
             IsComplete = true;
         }
     }
+}
 }

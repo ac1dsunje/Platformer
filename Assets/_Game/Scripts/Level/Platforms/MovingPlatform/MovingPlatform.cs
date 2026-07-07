@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using _Game.Scripts.Level.Platforms.MovingPlatform.State;
+using UnityEngine;
 
+namespace _Game.Scripts.Level.Platforms.MovingPlatform
+{
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovingPlatformController : MonoBehaviour
 {
@@ -12,19 +15,17 @@ public class MovingPlatformController : MonoBehaviour
     public float WaitTime => _waitingTime;
     public MovingPoint[] Points => _points;
 
-    private MPState _currentState;
-    private MPMovingState _movingState;
-    private MPWaitingState _waitingState;
+    private MpState _currentState;
+    private MpMovingState _movingState;
+    private MpWaitingState _waitingState;
 
     private void OnValidate()
     {
         foreach (var point in _points)
         {
-            if(point.SetPoint)
-            {
-                point.Point = transform.position;
-                point.SetPoint = false;
-            }
+            if (!point.SetPoint) continue;
+            point.Point = transform.position;
+            point.SetPoint = false;
         }
     }
 
@@ -32,8 +33,8 @@ public class MovingPlatformController : MonoBehaviour
     {
         RigidBody = GetComponent<Rigidbody2D>();
 
-        _movingState = new MPMovingState(this);
-        _waitingState = new MPWaitingState(this);
+        _movingState = new MpMovingState(this);
+        _waitingState = new MpWaitingState(this);
 
         ChangeState(_movingState);
     }
@@ -60,7 +61,7 @@ public class MovingPlatformController : MonoBehaviour
         }
     }
 
-    private void ChangeState(MPState newState)
+    private void ChangeState(MpState newState)
     {
         _currentState?.Exit();
         _currentState = newState;
@@ -76,4 +77,5 @@ public class MovingPlatformController : MonoBehaviour
     {
         collision.gameObject.transform.SetParent(null, true);
     }
+}
 }

@@ -1,5 +1,10 @@
+using _Game.Scripts.Input;
+using _Game.Scripts.Player.Interfaces;
+using _Game.Scripts.Player.States;
 using UnityEngine;
 
+namespace _Game.Scripts.Player
+{
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Animator))]
@@ -72,7 +77,7 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
 
     private void Flip(bool state)
     {
-        float rotationY = state ? 180f : 0f;
+        var rotationY = state ? 180f : 0f;
 
         Vector3 rotator = new(transform.rotation.x, rotationY, transform.rotation.z);
         transform.rotation = Quaternion.Euler(rotator);
@@ -86,4 +91,5 @@ public class PlayerController : MonoBehaviour, IDamageAble, ICoinReceiver
     public void TakeDamage(int amount) => _stats.TakeDamage(amount);
 
     public void AddCoins(int value) => _stats.AddCoins(value);
+}
 }

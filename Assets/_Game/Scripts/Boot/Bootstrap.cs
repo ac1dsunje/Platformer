@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace _Game.Scripts.Boot
+{
 public class Bootstrap: MonoBehaviour
 {
     [Scene]
@@ -19,4 +21,5 @@ public class Bootstrap: MonoBehaviour
 
         SceneLoader.SetMainMenuScene();
     }
+}
 }

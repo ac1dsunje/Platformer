@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+namespace _Game.Scripts.UI
+{
 public class MainMenuUIManager: MonoBehaviour
 {
     [SerializeField] private Button _playButton;
@@ -19,4 +21,5 @@ public class MainMenuUIManager: MonoBehaviour
     {
         _playButton.onClick.RemoveListener(SetGamePlayScene);
     }
+}
 }

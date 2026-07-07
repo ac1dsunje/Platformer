@@ -1,4 +1,7 @@
-﻿public class DeathScreen: ScreenManager
+﻿namespace _Game.Scripts.UI
+{
+public class DeathScreen: ScreenManager
 {
 
+}
 }

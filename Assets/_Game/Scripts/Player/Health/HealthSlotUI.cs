@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+namespace _Game.Scripts.Player.Health
+{
 public class HealthSlotUI: MonoBehaviour
 {
     [SerializeField] private Sprite _acitve;
@@ -16,4 +18,5 @@ public class HealthSlotUI: MonoBehaviour
     {
         _slot.sprite = _inactive;
     }
+}
 }

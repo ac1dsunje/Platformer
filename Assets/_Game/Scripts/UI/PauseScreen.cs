@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using _Game.Scripts.GamePlay;
+using UnityEngine;
 using UnityEngine.UI;
 
+namespace _Game.Scripts.UI
+{
 public class PauseScreen : ScreenManager
 {
     [SerializeField] private Button _resume;
@@ -22,7 +25,7 @@ public class PauseScreen : ScreenManager
     private void ResumeGame()
     {
         _gameStateManager.ResumeGame();
-}
+    }
 
     private void ExitToMainMenu()
     {
@@ -40,4 +43,5 @@ public class PauseScreen : ScreenManager
         _exit.onClick.RemoveListener(ExitToMainMenu);
         _restart.onClick.RemoveListener(Restart);
     }
+}
 }

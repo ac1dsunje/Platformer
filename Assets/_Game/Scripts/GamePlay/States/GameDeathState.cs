@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using _Game.Scripts.GamePlay;
+using _Game.Scripts.GamePlay.States;
+using UnityEngine;
 
 public class GameDeathState : GameState
 {

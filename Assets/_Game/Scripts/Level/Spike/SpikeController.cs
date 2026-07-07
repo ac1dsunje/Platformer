@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using _Game.Scripts.Player.Interfaces;
+using UnityEngine;
 
+namespace _Game.Scripts.Level.Spike
+{
 public class SpikeController: MonoBehaviour
 {
     [SerializeField] private int _damage = 1;
@@ -11,4 +14,5 @@ public class SpikeController: MonoBehaviour
             damageable.TakeDamage(_damage);
         }
     }
+}
 }

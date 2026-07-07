@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
+namespace _Game.Scripts.Input
+{
 public class StandardMovementInput: MonoBehaviour, IMovementInput
 {
     public event Action<float> OnHorizontalInput;
@@ -8,11 +10,12 @@ public class StandardMovementInput: MonoBehaviour, IMovementInput
 
     private void Update()
     {
-        OnHorizontalInput?.Invoke(Input.GetAxis("Horizontal"));
+        OnHorizontalInput?.Invoke(UnityEngine.Input.GetAxis("Horizontal"));
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
         {
             OnJumpRequested?.Invoke();
         }
     }
+}
 }

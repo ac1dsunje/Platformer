@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 
-public class MPMovingState : MPState
+namespace _Game.Scripts.Level.Platforms.MovingPlatform.State
+{
+public class MpMovingState : MpState
 {
     private float _speed;
     private int _pointIndex;
     private Vector3 _currentTarget;
 
-    public MPMovingState(MovingPlatformController context) : base(context) { }
+    public MpMovingState(MovingPlatformController context) : base(context) { }
 
     public override void Enter()
     {
         IsComplete = false;
         _currentTarget = Platform.Points[_pointIndex].Point;
-        float distance = Vector3.Distance(Platform.transform.position, _currentTarget);
+        var distance = Vector3.Distance(Platform.transform.position, _currentTarget);
         _speed = distance / Platform.MovementTime;
     }
 
@@ -43,4 +45,5 @@ public class MPMovingState : MPState
             _pointIndex = 0;
         }
     }
+}
 }

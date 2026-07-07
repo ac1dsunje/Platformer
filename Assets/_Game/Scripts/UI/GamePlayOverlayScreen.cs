@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Game.Scripts.Level;
+using _Game.Scripts.Player;
+using _Game.Scripts.Player.Health;
 using TMPro;
 using UnityEngine;
 
+namespace _Game.Scripts.UI
+{
 public class GamePlayOverlayScreen: ScreenManager
 {
     [SerializeField] private TextMeshProUGUI _timerText;
@@ -42,7 +47,7 @@ public class GamePlayOverlayScreen: ScreenManager
 
     private void UpdateHealthBar(int health, int maxHealth)
     {
-        for(int i = 0; i< maxHealth; i++)
+        for(var i = 0; i< maxHealth; i++)
         {
             if(i < health)
                 _healthSlots[i].Set();
@@ -76,4 +81,5 @@ public class GamePlayOverlayScreen: ScreenManager
         _player.OnTakeHit -= UpdateHealthBar;
         _player.OnCoinAdded -= UpdateCoinsCount;
     }
+}
 }
