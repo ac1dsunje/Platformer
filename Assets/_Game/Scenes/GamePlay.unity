@@ -247,7 +247,10 @@ MonoBehaviour:
   _movementInput: {fileID: 1048720311}
   _camera: {fileID: 962573609}
   _speedFollow: 3
-  _levelPrefab: {fileID: 812536613862647873, guid: 08d082bb5d3192f48b1eede351e6715c, type: 3}
+  _levelIndex: 1
+  _levelPrefabs:
+  - {fileID: 812536613862647873, guid: 014e4483abb66024ab5408b20a632acc, type: 3}
+  - {fileID: 812536613862647873, guid: 08d082bb5d3192f48b1eede351e6715c, type: 3}
   _canvas: {fileID: 1006630344}
   _overlayScreenPrefab: {fileID: 5186461214127160700, guid: 478362ae227ff0d4d9064fb2d038844a, type: 3}
   _deathScreenPrefab: {fileID: 3919109595341518841, guid: 68ced372daf99af4aa805119814f953b, type: 3}

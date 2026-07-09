@@ -21,8 +21,9 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private float _speedFollow;
 
-    [Header("Level")]
-    [SerializeField] private GameObject _levelPrefab;
+    [Header("Level")] 
+    [SerializeField] private int _levelIndex = 1;
+    [SerializeField] private GameObject[] _levelPrefabs;
 
     [Header("UI")]
     [SerializeField] private Canvas _canvas;
@@ -49,7 +50,7 @@ public class EntryPoint : MonoBehaviour
 
     private LevelController SpawnLevel()
     {
-        return Instantiate(_levelPrefab).GetComponent<LevelController>();
+        return Instantiate(_levelPrefabs[_levelIndex]).GetComponent<LevelController>();
     }
 
     private void SpawnPlayer()
