@@ -26,10 +26,9 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private GameObject[] _levelPrefabs;
 
     [Header("UI")]
-    [SerializeField] private Canvas _canvas;
-    [SerializeField] private GameObject _overlayScreenPrefab;
-    [SerializeField] private GameObject _deathScreenPrefab;
-    [SerializeField] private GameObject _pauseScreenPrefab;
+    [SerializeField] private GamePlayOverlayScreen _overlayScreen;
+    [SerializeField] private DeathScreen _deathScreen;
+    [SerializeField] private PauseScreen _pauseScreen;
 
     private LevelController _levelController;
     private PlayerController _playerView;
@@ -72,15 +71,9 @@ public class EntryPoint : MonoBehaviour
 
     private UIManager CreateUIManager()
     {
-        var overlay = Instantiate(_overlayScreenPrefab, _canvas.transform, false).GetComponent<GamePlayOverlayScreen>();
-        overlay.Construct(_levelController, _playerModel);
-
-        var deathScreen = Instantiate(_deathScreenPrefab, _canvas.transform, false).GetComponent<DeathScreen>();
-
-        var pauseScreen = Instantiate(_pauseScreenPrefab, _canvas.transform, false)
-            .GetComponent<PauseScreen>().Initialize(_gameStateManager);
-
-        return new(overlay, deathScreen, pauseScreen);
+        _overlayScreen.Construct(_levelController, _playerModel);
+        _pauseScreen.Construct(_gameStateManager);
+        return new(_overlayScreen, _deathScreen, _pauseScreen);
     }
 
     private void OnDestroy()

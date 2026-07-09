@@ -12,14 +12,13 @@ public class PauseScreen : ScreenManager
 
     private GameStateManager _gameStateManager;
 
-    public PauseScreen Initialize(GameStateManager gsm)
+    public void Construct(GameStateManager gsm)
     {
         _gameStateManager = gsm;
         _resume.onClick.AddListener(ResumeGame);
         _exit.onClick.AddListener(ExitToMainMenu);
         _restart.onClick.AddListener(Restart);
-
-        return this;
+        _restart.onClick.AddListener(Restart);
     }
 
     private void ResumeGame()
